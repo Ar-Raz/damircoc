@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    {% for i in objects %}
+    <h1>{{ i.start_date }}</h1>
+    {% endfor %}
+
+    {{ objects.start_date }}
+
+
+{% endblock content %}

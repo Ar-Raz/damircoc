@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <main>
+    <div class="container">
+
+    <div class="table-responsive text-nowrap">
+    <h2 class="float-right" dir="rtl">سفارش های شما</h2>
+    <table class="table">
+        <thead dir="rtl">
+        <tr >
+            <th scope="col" class="float-right">وضعیت</th>
+            <th scope="col">تاریخ</th>
+            <th scope="col">سفارش</th>
+            <th scope="col">کاربر</th>
+            <th scope="col">#</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for i in objects %}
+        <tr>
+
+            <td>{{ i.costumer.user.username }}</td>
+            <td><a href="#">جزییات سفارش</a></td>
+            <td><a href="#">جزییات سفارش</a></td>
+            <td>
+                <a href="{% url 'merchant:remove-from-cart' i.items.item.slug %}"><i class="fas fa-minus mr-2"></i></a>
+                {{ i.start_date }}
+                <a href="{% url 'merchant:add-to-cart' i.items.item.slug %}"><i class="fas fa-plus ml-2"></i></a>
+            </td>
+
+            <th scope="row">{{ forloop.counter }}</th>
+        </tr>
+        {% empty %}
+        <tr >
+            <th scope="col" class="float-right"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col">شما سفارشی ندارید</th>
+        </tr>
+        <tr>
+            <td colspan="5">
+            <a class='btn btn-primary float-left' href='/'>برگشت به فروشگاه</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    </div>
+
+    </div>
+  </main>
+
+{% endblock content %}
+
+
